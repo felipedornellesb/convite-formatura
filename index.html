@@ -5,195 +5,211 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Convite de Formatura - Felipe Dornelles Brasil</title>
     <style>
-        /* Reset e formatação base */
-        body {
-            font-family: 'Georgia', serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f1ea;
-            color: #333;
-            overflow: hidden; /* Evita rolagem acidental na tela de abertura */
+        /* Reset básico e tipografia */
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Georgia', serif; 
+            background-color: #f4f1ea; 
+            height: 100%; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
         }
         
-        .container {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Estilo comum das "páginas" do cartão */
-        .page {
-            position: absolute;
+        /* Contêiner da animação 3D */
+        .flip-container {
+            perspective: 1000px; /* Dá a profundidade 3D */
             width: 90%;
             max-width: 450px;
-            height: 85%;
+            height: 90vh; 
             max-height: 750px;
+        }
+        
+        .flipper {
+            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            transform-style: preserve-3d;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        
+        /* Quando a classe 'open' é adicionada, o cartão gira 180 graus */
+        .flip-container.open .flipper {
+            transform: rotateY(180deg);
+        }
+        
+        /* Configurações comuns para frente e verso */
+        .front, .back {
+            backface-visibility: hidden; /* Esconde o verso quando virado */
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border-radius: 12px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 30px 20px;
             box-sizing: border-box;
-            border-radius: 12px;
-            transition: transform 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.8s ease-in-out;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            padding: 20px;
         }
-
-        /* Capa (Página 1) */
-        .page-1 {
-            z-index: 2;
-            background-color: #0b1f38; /* Azul profundo formal */
+        
+        /* Capa (Frente) */
+        .front {
+            background-color: #0b1f38;
             color: #f4f1ea;
-            border: 4px solid #c5a059; /* Dourado */
-        }
-
-        /* Convite (Página 2) */
-        .page-2 {
-            z-index: 1;
-            opacity: 0;
-            background-color: #ffffff;
             border: 4px solid #c5a059;
-            transform: scale(0.95);
+            z-index: 2;
+            transform: rotateY(0deg);
         }
-
-        /* Tipografia e Elementos da Capa */
+        
         .quote {
-            font-style: italic;
-            font-size: 1.25rem;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .author {
-            font-size: 0.9rem;
-            margin-bottom: 50px;
-            color: #c5a059;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .btn {
-            padding: 12px 28px;
-            font-size: 1rem;
-            font-family: 'Georgia', serif;
-            color: #0b1f38;
-            background-color: #c5a059;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: background 0.3s, transform 0.2s;
-            font-weight: bold;
-        }
-
-        .btn:active {
-            transform: scale(0.95);
-        }
-
-        /* Tipografia do Convite Interno */
-        .header-text {
-            font-size: 1.4rem;
-            color: #0b1f38;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .subtitle {
-            font-size: 1rem;
-            margin-bottom: 25px;
-            color: #555;
-            font-style: italic;
-        }
-
-        .name {
             font-size: 1.8rem;
+            font-weight: bold;
+            font-style: italic;
+            margin-bottom: 10px;
             color: #c5a059;
-            margin-bottom: 20px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
-
-        .details {
+        
+        .author {
             font-size: 1rem;
-            line-height: 1.8;
+            color: #f4f1ea;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .sub-quote {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+        
+        /* Interno (Verso) */
+        .back {
+            background-color: #ffffff;
             color: #333;
+            border: 4px solid #c5a059;
+            transform: rotateY(180deg);
+            overflow-y: auto;
         }
-
-        .course-name {
-            font-size: 1.4rem;
-            color: #0b1f38;
-            display: block;
-            margin: 10px 0;
+        
+        /* Foto de perfil */
+        .profile-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top;
+            border: 3px solid #c5a059;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Tipografia do Convite */
+        .header-text { font-size: 1.2rem; color: #0b1f38; text-transform: uppercase; letter-spacing: 2px; }
+        .subtitle { font-size: 0.9rem; margin-bottom: 15px; color: #555; font-style: italic; }
+        .name { font-size: 1.6rem; color: #c5a059; margin-bottom: 15px; font-weight: bold; text-transform: uppercase; }
+        .details { font-size: 0.95rem; line-height: 1.6; color: #333; }
+        .course-name { font-size: 1.3rem; color: #0b1f38; display: block; margin: 5px 0; font-weight: bold; }
+        .highlight { font-weight: bold; color: #0b1f38; }
+        
+        /* Botão Dourado */
+        .btn {
+            padding: 12px 28px; font-size: 1rem; font-family: 'Georgia', serif; color: #0b1f38; background-color: #c5a059;
+            border: none; border-radius: 4px; cursor: pointer; text-transform: uppercase; font-weight: bold;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        .btn:active { transform: scale(0.95); }
+        
+        /* Botão do WhatsApp */
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            padding: 12px 20px;
+            background-color: #25D366;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
             font-weight: bold;
+            font-family: sans-serif;
+            font-size: 0.95rem;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-
-        .highlight {
-            font-weight: bold;
-            color: #0b1f38;
-        }
-
-        /* Animação de Abertura */
-        .open .page-1 {
-            transform: translateY(-120%) rotateX(20deg);
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .open .page-2 {
-            opacity: 1;
-            transform: scale(1);
-            z-index: 3;
+        .btn-whatsapp:hover { background-color: #1ebe57; }
+        .btn-whatsapp:active { transform: scale(0.95); }
+        .btn-whatsapp svg { width: 20px; height: 20px; margin-right: 8px; fill: currentColor; }
+        
+        /* Botão Voltar */
+        .btn-back {
+            background: none; border: none; color: #c5a059; cursor: pointer; font-size: 0.9rem;
+            margin-top: 20px; text-decoration: underline; font-family: 'Georgia', serif;
         }
     </style>
 </head>
 <body>
-    <div class="container" id="invite-container">
-        
-        <!-- Capa do Convite -->
-        <div class="page page-1">
-            <div class="quote">
-                "Como nos ensina a economia, não existe almoço grátis. Cada etapa dessa jornada exigiu dedicação e renúncias, mas todo o esforço investido ao longo desses anos agora traz a sua maior recompensa."
-            </div>
-            <div class="author">Inspirado em Milton Friedman</div>
-            <button class="btn" onclick="abrirConvite()">Abrir Convite</button>
-        </div>
-
-        <!-- Parte Interna do Convite -->
-        <div class="page page-2">
-            <div class="header-text">Colação de Grau</div>
-            <div class="subtitle">A alegria de compartilhar uma conquista.</div>
+    <div class="flip-container" id="invite-container">
+        <div class="flipper">
             
-            <div class="name">FELIPE DORNELLES BRASIL</div>
-            
-            <div class="details">
-                convida para a cerimônia de conclusão do curso de<br>
-                <span class="course-name">CIÊNCIAS ECONÔMICAS</span>
-                pela<br>
-                <span class="highlight">UNIVERSIDADE FEDERAL DO RIO GRANDE DO SUL (UFRGS)</span><br><br>
+            <!-- CAPA DO CONVITE (Frente) -->
+            <div class="front">
+                <div class="quote">"Não existe almoço grátis."</div>
+                <div class="author">- Milton Friedman</div>
                 
-                <span class="highlight">Data:</span> 18 de setembro<br>
-                <span class="highlight">Horário:</span> 18:00 horas<br>
-                <span class="highlight">Local:</span> Salão de Atos da UFRGS<br>
-                <span class="highlight">Endereço:</span> Av. Paulo Gama, 110 - Campus Centro<br>
-                Porto Alegre - RS, CEP: 90040-060<br><br>
+                <div class="sub-quote">
+                    Todo esforço exige seu preço, e hoje celebramos a recompensa.
+                </div>
                 
-                <span style="font-style: italic; color: #c5a059;">Sua presença será uma honra.</span>
+                <button class="btn" onclick="toggleConvite()">Abrir Convite</button>
             </div>
-        </div>
 
+            <!-- PARTE INTERNA (Verso) -->
+            <div class="back">
+                <!-- A imagem puxará o arquivo 'image.png' do seu repositório -->
+                <img src="image.png" alt="Foto de Felipe Dornelles Brasil" class="profile-photo">
+                
+                <div class="header-text">Colação de Grau</div>
+                <div class="subtitle">A alegria de compartilhar uma conquista.</div>
+                
+                <div class="name">FELIPE DORNELLES BRASIL</div>
+                
+                <div class="details">
+                    convida para a cerimônia de conclusão do curso de<br>
+                    <span class="course-name">CIÊNCIAS ECONÔMICAS</span>
+                    pela<br>
+                    <span class="highlight">UNIVERSIDADE FEDERAL DO RIO GRANDE DO SUL (UFRGS)</span><br><br>
+                    
+                    <span class="highlight">Data:</span> 18 de setembro<br>
+                    <span class="highlight">Horário:</span> 18:00 horas<br>
+                    <span class="highlight">Local:</span> Salão de Atos da UFRGS<br>
+                    <span class="highlight">Endereço:</span> Av. Paulo Gama, 110 - Campus Centro<br>
+                    Porto Alegre - RS, CEP: 90040-060<br>
+                </div>
+
+                <!-- Botão do WhatsApp (link configurado com seu número e texto pronto) -->
+                <a href="https://wa.me/5551997192091?text=Ol%C3%A1%2C%20Felipe%21%20Confirmo%20com%20alegria%20minha%20presen%C3%A7a%20na%20sua%20formatura%21" class="btn-whatsapp" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.13.555 4.195 1.611 6.012L.416 23.584l5.688-1.492A11.942 11.942 0 0 0 12.031 24c6.646 0 12.031-5.385 12.031-12.031S18.677 0 12.031 0zm0 21.996a9.929 9.929 0 0 1-5.068-1.39l-.364-.216-3.766.988.997-3.67-.236-.376A9.914 9.914 0 0 1 2.062 12.03C2.062 6.536 6.536 2.062 12.03 2.062c5.495 0 9.969 4.475 9.969 9.969 0 5.495-4.474 9.965-9.968 9.965zm5.474-7.485c-.3-.15-1.776-.877-2.052-.977-.276-.101-.477-.15-.677.15-.201.3-.778.977-.954 1.178-.175.201-.35.226-.65.076-1.564-.783-2.695-1.428-3.738-3.238-.176-.301.096-.28.39-.86.075-.15.038-.276-.038-.426-.075-.15-.677-1.63-.927-2.23-.245-.586-.495-.506-.677-.516-.176-.01-.377-.01-.577-.01s-.527.075-.802.375c-.276.3-1.053 1.03-1.053 2.508 0 1.478 1.078 2.906 1.228 3.106.15.201 2.115 3.238 5.122 4.538 1.956.845 2.651.91 3.528.775.993-.153 2.162-.88 2.463-1.73.3-.85.3-1.58.211-1.73-.1-.15-.35-.226-.65-.376z"/></svg>
+                    Confirmar Presença via WhatsApp
+                </a>
+                
+                <button class="btn-back" onclick="toggleConvite()">↶ Voltar para a capa</button>
+            </div>
+
+        </div>
     </div>
 
     <script>
-        // Função simples para ativar a animação CSS
-        function abrirConvite() {
-            document.getElementById('invite-container').classList.add('open');
+        // Função que aciona a rotação do cartão
+        function toggleConvite() {
+            document.getElementById('invite-container').classList.toggle('open');
         }
     </script>
 </body>
