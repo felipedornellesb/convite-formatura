@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convite de Formatura - Felipe Dornelles Brasil</title>
+    <style>
+        /* Reset e formatação base */
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f1ea;
+            color: #333;
+            overflow: hidden; /* Evita rolagem acidental na tela de abertura */
+        }
+        
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Estilo comum das "páginas" do cartão */
+        .page {
+            position: absolute;
+            width: 90%;
+            max-width: 450px;
+            height: 85%;
+            max-height: 750px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px 20px;
+            box-sizing: border-box;
+            border-radius: 12px;
+            transition: transform 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.8s ease-in-out;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        /* Capa (Página 1) */
+        .page-1 {
+            z-index: 2;
+            background-color: #0b1f38; /* Azul profundo formal */
+            color: #f4f1ea;
+            border: 4px solid #c5a059; /* Dourado */
+        }
+
+        /* Convite (Página 2) */
+        .page-2 {
+            z-index: 1;
+            opacity: 0;
+            background-color: #ffffff;
+            border: 4px solid #c5a059;
+            transform: scale(0.95);
+        }
+
+        /* Tipografia e Elementos da Capa */
+        .quote {
+            font-style: italic;
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .author {
+            font-size: 0.9rem;
+            margin-bottom: 50px;
+            color: #c5a059;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-family: 'Georgia', serif;
+            color: #0b1f38;
+            background-color: #c5a059;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: background 0.3s, transform 0.2s;
+            font-weight: bold;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Tipografia do Convite Interno */
+        .header-text {
+            font-size: 1.4rem;
+            color: #0b1f38;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            margin-bottom: 25px;
+            color: #555;
+            font-style: italic;
+        }
+
+        .name {
+            font-size: 1.8rem;
+            color: #c5a059;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .details {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .course-name {
+            font-size: 1.4rem;
+            color: #0b1f38;
+            display: block;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #0b1f38;
+        }
+
+        /* Animação de Abertura */
+        .open .page-1 {
+            transform: translateY(-120%) rotateX(20deg);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .open .page-2 {
+            opacity: 1;
+            transform: scale(1);
+            z-index: 3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="invite-container">
+        
+        <!-- Capa do Convite -->
+        <div class="page page-1">
+            <div class="quote">
+                "Como nos ensina a economia, não existe almoço grátis. Cada etapa dessa jornada exigiu dedicação e renúncias, mas todo o esforço investido ao longo desses anos agora traz a sua maior recompensa."
+            </div>
+            <div class="author">Inspirado em Milton Friedman</div>
+            <button class="btn" onclick="abrirConvite()">Abrir Convite</button>
+        </div>
+
+        <!-- Parte Interna do Convite -->
+        <div class="page page-2">
+            <div class="header-text">Colação de Grau</div>
+            <div class="subtitle">A alegria de compartilhar uma conquista.</div>
+            
+            <div class="name">FELIPE DORNELLES BRASIL</div>
+            
+            <div class="details">
+                convida para a cerimônia de conclusão do curso de<br>
+                <span class="course-name">CIÊNCIAS ECONÔMICAS</span>
+                pela<br>
+                <span class="highlight">UNIVERSIDADE FEDERAL DO RIO GRANDE DO SUL (UFRGS)</span><br><br>
+                
+                <span class="highlight">Data:</span> 18 de setembro<br>
+                <span class="highlight">Horário:</span> 18:00 horas<br>
+                <span class="highlight">Local:</span> Salão de Atos da UFRGS<br>
+                <span class="highlight">Endereço:</span> Av. Paulo Gama, 110 - Campus Centro<br>
+                Porto Alegre - RS, CEP: 90040-060<br><br>
+                
+                <span style="font-style: italic; color: #c5a059;">Sua presença será uma honra.</span>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Função simples para ativar a animação CSS
+        function abrirConvite() {
+            document.getElementById('invite-container').classList.add('open');
+        }
+    </script>
+</body>
+</html>
