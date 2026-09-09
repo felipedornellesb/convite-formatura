@@ -6,49 +6,50 @@
     <title>Convite de Formatura - Felipe Dornelles Brasil</title>
     <style>
         /* Reset básico e tipografia */
-        body, html { 
-            margin: 0; 
-            padding: 0; 
-            font-family: 'Georgia', serif; 
-            background-color: #f4f1ea; 
-            min-height: 100vh; /* Garante que o corpo preencha a viewport */
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-        }
-        
-        /* Contêiner da animação 3D - MELHORADO RESPONSIVIDADE */
-        .flip-container {
-            perspective: 1000px; /* Dá a profundidade 3D */
-            width: 100%; /* Ocupa a largura total */
-            max-width: 400px; /* Limita a largura em telas maiores */
-            height: auto; /* Altura automática baseada no conteúdo */
-            min-height: 80vh; /* Altura mínima para manter o visual */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', serif;
+            background-color: #f4f1ea;
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         
+        /* ✅ CORREÇÃO 1: altura explícita no contêiner */
+        .flip-container {
+            perspective: 1000px;
+            width: 100%;
+            max-width: 400px;
+            height: 85vh;          /* ← altura EXPLÍCITA, não "auto" */
+            /* removido display:flex - não é necessário aqui */
+        }
+        
+        /* ✅ CORREÇÃO 2: height 100% agora funciona porque o pai tem altura definida */
         .flipper {
             transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
             transform-style: preserve-3d;
             position: relative;
             width: 100%;
-            height: 100%;
+            height: 100%;           /* ← agora resolve: 100% de 85vh */
             border-radius: 12px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.3);
         }
         
-        /* Quando a classe 'open' é adicionada, o cartão gira 180 graus */
         .flip-container.open .flipper {
             transform: rotateY(180deg);
         }
         
         /* Configurações comuns para frente e verso */
         .front, .back {
-            backface-visibility: hidden; /* Esconde o verso quando virado */
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;  /* ✅ CORREÇÃO 3: suporte Safari */
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             border-radius: 12px;
             display: flex;
             flex-direction: column;
@@ -56,7 +57,7 @@
             align-items: center;
             text-align: center;
             box-sizing: border-box;
-            padding: 40px 30px; /* Aumentado padding interno */
+            padding: 40px 30px;
         }
         
         /* Capa (Frente) */
@@ -88,36 +89,34 @@
             font-size: 1.1rem;
             line-height: 1.5;
             margin-bottom: 40px;
-            padding: 0 10px; /* Preenchimento lateral reduzido para mobile */
+            padding: 0 10px;
         }
         
-        /* Interno (Verso) - MELHORADO RESPONSIVIDADE E ROLAGEM */
+        /* ✅ CORREÇÃO 4: verso com flexbox + overflow funcional */
         .back {
             background-color: #ffffff;
             color: #333;
             border: 4px solid #c5a059;
             transform: rotateY(180deg);
-            overflow-y: auto; /* Habilita rolagem vertical se o conteúdo for longo */
-            display: block; /* Mudar para block para rolagem funcionar melhor com conteúdo empilhado */
-            padding: 20px; /* Preenchimento padrão */
-            text-align: center;
+            justify-content: flex-start;  /* ← conteúdo começa do topo */
+            overflow-y: auto;             /* ← rolagem se necessário */
+            padding: 25px 20px;
         }
         
-        /* Foto de perfil - MELHORADO RESPONSIVIDADE */
+        /* Foto de perfil */
         .profile-photo {
             width: 140px;
-            max-width: 100%; /* Imagem se adapta ao contêiner */
-            height: auto; /* Altura automática */
+            min-width: 140px;       /* ✅ evita encolher dentro do flex */
+            height: 140px;
             border-radius: 50%;
             object-fit: cover;
             object-position: top;
             border: 3px solid #c5a059;
-            margin: 0 auto 15px; /* Centralizar com margem automática e margem inferior */
+            margin-bottom: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            display: block; /* Garante que as margens automáticas funcionem */
         }
         
-        /* Tipografia do Convite - MELHORADO RESPONSIVIDADE */
+        /* Tipografia do Convite */
         .header-text { font-size: 1.2rem; color: #0b1f38; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; }
         .subtitle { font-size: 0.9rem; margin-bottom: 15px; color: #555; font-style: italic; }
         .name { font-size: 1.6rem; color: #c5a059; margin-bottom: 15px; font-weight: bold; text-transform: uppercase; line-height: 1.2; }
@@ -125,17 +124,18 @@
         .course-name { font-size: 1.3rem; color: #0b1f38; display: block; margin: 5px 0 10px; font-weight: bold; }
         .highlight { font-weight: bold; color: #0b1f38; }
         
-        /* Botão Dourado - MELHORADO RESPONSIVIDADE */
+        /* Botão Dourado */
         .btn {
-            padding: 12px 28px; font-size: 1rem; font-family: 'Georgia', serif; color: #0b1f38; background-color: #c5a059;
-            border: none; border-radius: 4px; cursor: pointer; text-transform: uppercase; font-weight: bold;
+            padding: 12px 28px; font-size: 1rem; font-family: 'Georgia', serif;
+            color: #0b1f38; background-color: #c5a059;
+            border: none; border-radius: 4px; cursor: pointer;
+            text-transform: uppercase; font-weight: bold;
             transition: transform 0.2s;
             box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-            max-width: 80%; /* Evita que o botão quebre em telas muito pequenas */
         }
         .btn:active { transform: scale(0.95); }
         
-        /* Botão do WhatsApp - MELHORADO RESPONSIVIDADE */
+        /* Botão do WhatsApp */
         .btn-whatsapp {
             display: inline-flex;
             align-items: center;
@@ -151,8 +151,7 @@
             font-size: 0.95rem;
             transition: transform 0.2s, background-color 0.2s;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            width: auto;
-            max-width: 90%; /* Limita a largura do botão */
+            flex-shrink: 0;          /* ✅ não encolhe dentro do flex */
         }
         .btn-whatsapp:hover { background-color: #1ebe57; }
         .btn-whatsapp:active { transform: scale(0.95); }
@@ -160,18 +159,16 @@
         
         /* Botão Voltar */
         .btn-back {
-            background: none; border: none; color: #c5a059; cursor: pointer; font-size: 0.9rem;
-            margin-top: 20px; text-decoration: underline; font-family: 'Georgia', serif;
-            display: block; /* Garante que o botão fique em uma linha própria */
-            margin-left: auto;
-            margin-right: auto;
+            background: none; border: none; color: #c5a059; cursor: pointer;
+            font-size: 0.9rem; margin-top: 20px; text-decoration: underline;
+            font-family: 'Georgia', serif;
+            flex-shrink: 0;          /* ✅ não encolhe dentro do flex */
         }
-    
-        /* Media queries para ajustes finos em telas muito pequenas (opcional) */
+        
         @media (max-width: 320px) {
             .quote { font-size: 1.6rem; }
             .name { font-size: 1.4rem; }
-            .profile-photo { width: 120px; }
+            .profile-photo { width: 120px; min-width: 120px; height: 120px; }
             .back { padding: 15px; }
         }
     </style>
