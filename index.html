@@ -5,78 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Convite de Formatura - Felipe Dornelles Brasil</title>
     <style>
-        /* Reset básico e tipografia */
-        body, html {
+        /* ========== RESET GLOBAL ========== */
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ========== BODY ========== */
+        body {
             font-family: 'Georgia', serif;
             background-color: #f4f1ea;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
-        
-        /* ✅ CORREÇÃO 1: altura explícita no contêiner */
+
+        /* ========== FLIP CONTAINER ========== 
+           PONTO-CHAVE: largura e altura EXPLÍCITAS.
+           Sem isso, position:absolute dos filhos colapsa tudo.
+        */
         .flip-container {
-            perspective: 1000px;
-            width: 100%;
-            max-width: 400px;
-            height: 85vh;          /* ← altura EXPLÍCITA, não "auto" */
-            /* removido display:flex - não é necessário aqui */
+            perspective: 1200px;
+            width: 400px;       /* largura fixa */
+            max-width: 100%;    /* nunca ultrapassa a tela */
+            height: 650px;      /* altura fixa */
         }
-        
-        /* ✅ CORREÇÃO 2: height 100% agora funciona porque o pai tem altura definida */
+
+        /* ========== FLIPPER (peça que gira) ========== */
         .flipper {
-            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-            transform-style: preserve-3d;
             position: relative;
             width: 100%;
-            height: 100%;           /* ← agora resolve: 100% de 85vh */
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
             border-radius: 12px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
-        
+
         .flip-container.open .flipper {
             transform: rotateY(180deg);
         }
-        
-        /* Configurações comuns para frente e verso */
+
+        /* ========== FACES (frente e verso) ========== */
         .front, .back {
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;  /* ✅ CORREÇÃO 3: suporte Safari */
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
             border-radius: 12px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            box-sizing: border-box;
-            padding: 40px 30px;
         }
-        
-        /* Capa (Frente) */
+
+        /* ========== CAPA (Frente) ========== */
         .front {
             background-color: #0b1f38;
             color: #f4f1ea;
             border: 4px solid #c5a059;
+            padding: 40px 30px;
             z-index: 2;
-            transform: rotateY(0deg);
         }
-        
+
         .quote {
             font-size: 1.8rem;
             font-weight: bold;
             font-style: italic;
             margin-bottom: 10px;
             color: #c5a059;
+            line-height: 1.3;
         }
-        
+
         .author {
             font-size: 1rem;
             color: #f4f1ea;
@@ -84,140 +92,302 @@
             text-transform: uppercase;
             letter-spacing: 2px;
         }
-        
+
         .sub-quote {
             font-size: 1.1rem;
-            line-height: 1.5;
+            line-height: 1.6;
             margin-bottom: 40px;
             padding: 0 10px;
+            color: #f4f1ea;
         }
-        
-        /* ✅ CORREÇÃO 4: verso com flexbox + overflow funcional */
+
+        /* ========== VERSO (Conteúdo interno) ========== */
         .back {
             background-color: #ffffff;
             color: #333;
             border: 4px solid #c5a059;
             transform: rotateY(180deg);
-            justify-content: flex-start;  /* ← conteúdo começa do topo */
-            overflow-y: auto;             /* ← rolagem se necessário */
-            padding: 25px 20px;
+            justify-content: flex-start;
+            overflow-y: auto;
+            padding: 30px 25px;
         }
-        
-        /* Foto de perfil */
+
+        /* ========== FOTO DE PERFIL ========== */
         .profile-photo {
-            width: 140px;
-            min-width: 140px;       /* ✅ evita encolher dentro do flex */
-            height: 140px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             object-fit: cover;
             object-position: top;
             border: 3px solid #c5a059;
             margin-bottom: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            flex-shrink: 0;
         }
-        
-        /* Tipografia do Convite */
-        .header-text { font-size: 1.2rem; color: #0b1f38; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; }
-        .subtitle { font-size: 0.9rem; margin-bottom: 15px; color: #555; font-style: italic; }
-        .name { font-size: 1.6rem; color: #c5a059; margin-bottom: 15px; font-weight: bold; text-transform: uppercase; line-height: 1.2; }
-        .details { font-size: 0.95rem; line-height: 1.6; color: #333; margin-bottom: 10px; }
-        .course-name { font-size: 1.3rem; color: #0b1f38; display: block; margin: 5px 0 10px; font-weight: bold; }
-        .highlight { font-weight: bold; color: #0b1f38; }
-        
-        /* Botão Dourado */
+
+        /* ========== TIPOGRAFIA DO CONVITE ========== */
+        .header-text {
+            font-size: 1.15rem;
+            color: #0b1f38;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            color: #555;
+            font-style: italic;
+        }
+
+        .name {
+            font-size: 1.5rem;
+            color: #c5a059;
+            margin-bottom: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            line-height: 1.3;
+        }
+
+        .details {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .course-name {
+            font-size: 1.2rem;
+            color: #0b1f38;
+            display: block;
+            margin: 5px 0 10px;
+            font-weight: bold;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #0b1f38;
+        }
+
+        /* ========== BOTÃO DOURADO (capa) ========== */
         .btn {
-            padding: 12px 28px; font-size: 1rem; font-family: 'Georgia', serif;
-            color: #0b1f38; background-color: #c5a059;
-            border: none; border-radius: 4px; cursor: pointer;
-            text-transform: uppercase; font-weight: bold;
-            transition: transform 0.2s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-family: 'Georgia', serif;
+            color: #0b1f38;
+            background-color: #c5a059;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
         }
-        .btn:active { transform: scale(0.95); }
-        
-        /* Botão do WhatsApp */
+
+        .btn:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        /* ========== BOTÃO WHATSAPP ========== */
         .btn-whatsapp {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 18px;
             padding: 12px 20px;
             background-color: #25D366;
             color: white;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 6px;
             font-weight: bold;
-            font-family: sans-serif;
-            font-size: 0.95rem;
+            font-family: 'Arial', sans-serif;
+            font-size: 0.9rem;
             transition: transform 0.2s, background-color 0.2s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            flex-shrink: 0;          /* ✅ não encolhe dentro do flex */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            flex-shrink: 0;
         }
-        .btn-whatsapp:hover { background-color: #1ebe57; }
-        .btn-whatsapp:active { transform: scale(0.95); }
-        .btn-whatsapp svg { width: 20px; height: 20px; margin-right: 8px; fill: currentColor; }
-        
-        /* Botão Voltar */
+
+        .btn-whatsapp:hover {
+            background-color: #1ebe57;
+        }
+
+        .btn-whatsapp:active {
+            transform: scale(0.95);
+        }
+
+        .btn-whatsapp svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            fill: currentColor;
+            flex-shrink: 0;
+        }
+
+        /* ========== BOTÃO VOLTAR ========== */
         .btn-back {
-            background: none; border: none; color: #c5a059; cursor: pointer;
-            font-size: 0.9rem; margin-top: 20px; text-decoration: underline;
+            background: none;
+            border: none;
+            color: #c5a059;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 18px;
+            text-decoration: underline;
             font-family: 'Georgia', serif;
-            flex-shrink: 0;          /* ✅ não encolhe dentro do flex */
+            flex-shrink: 0;
+            padding: 5px;
         }
-        
+
+        /* ========== DECORAÇÃO: linha divisória ========== */
+        .divider {
+            width: 60px;
+            height: 2px;
+            background-color: #c5a059;
+            margin: 10px auto;
+            border: none;
+        }
+
+        /* ========== RESPONSIVO ========== */
+        @media (max-height: 700px) {
+            .flip-container {
+                height: 580px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .flip-container {
+                width: 100%;
+                height: 620px;
+            }
+
+            .front {
+                padding: 30px 20px;
+            }
+
+            .back {
+                padding: 20px 15px;
+            }
+
+            .quote {
+                font-size: 1.5rem;
+            }
+
+            .name {
+                font-size: 1.3rem;
+            }
+
+            .profile-photo {
+                width: 110px;
+                height: 110px;
+            }
+
+            .course-name {
+                font-size: 1.1rem;
+            }
+
+            .details {
+                font-size: 0.85rem;
+            }
+        }
+
         @media (max-width: 320px) {
-            .quote { font-size: 1.6rem; }
-            .name { font-size: 1.4rem; }
-            .profile-photo { width: 120px; min-width: 120px; height: 120px; }
-            .back { padding: 15px; }
+            .flip-container {
+                height: 580px;
+            }
+
+            .quote {
+                font-size: 1.3rem;
+            }
+
+            .profile-photo {
+                width: 90px;
+                height: 90px;
+            }
+
+            .back {
+                padding: 15px 12px;
+            }
         }
     </style>
 </head>
 <body>
+
     <div class="flip-container" id="invite-container">
         <div class="flipper">
-            
-            <!-- CAPA DO CONVITE (Frente) -->
+
+            <!-- ===== CAPA (Frente) ===== -->
             <div class="front">
                 <div class="quote">"Não existe almoço grátis."</div>
-                <div class="author">- Milton Friedman</div>
-                
+                <div class="author">— Milton Friedman</div>
+
+                <hr class="divider">
+
                 <div class="sub-quote">
-                    Todo esforço exige seu preço, e hoje celebramos a recompensa.
+                    Todo esforço exige seu preço,<br>e hoje celebramos a recompensa.
                 </div>
-                
+
                 <button class="btn" onclick="toggleConvite()">Abrir Convite</button>
             </div>
 
-            <!-- PARTE INTERNA (Verso) -->
+            <!-- ===== INTERNO (Verso) ===== -->
             <div class="back">
-                <!-- A imagem puxará o arquivo 'image.png' do seu repositório -->
                 <img src="image.png" alt="Foto de Felipe Dornelles Brasil" class="profile-photo">
-                
+
                 <div class="header-text">Colação de Grau</div>
                 <div class="subtitle">A alegria de compartilhar uma conquista.</div>
-                
-                <div class="name">FELIPE DORNELLES BRASIL</div>
-                
+
+                <hr class="divider">
+
+                <div class="name">Felipe Dornelles Brasil</div>
+
                 <div class="details">
                     convida para a cerimônia de conclusão do curso de<br>
-                    <span class="course-name">CIÊNCIAS ECONÔMICAS</span>
+                    <span class="course-name">Ciências Econômicas</span>
                     pela<br>
-                    <span class="highlight">UNIVERSIDADE FEDERAL DO RIO GRANDE DO SUL (UFRGS)</span><br><br>
-                    
-                    <span class="highlight">Data:</span> 18 de setembro<br>
-                    <span class="highlight">Horário:</span> 18:00 horas<br>
-                    <span class="highlight">Local:</span> Salão de Atos da UFRGS<br>
-                    <span class="highlight">Endereço:</span> Av. Paulo Gama, 110 - Campus Centro<br>
-                    Porto Alegre - RS, CEP: 90040-060<br>
+                    <span class="highlight">Universidade Federal do Rio Grande do Sul (UFRGS)</span>
                 </div>
 
-                <!-- Botão do WhatsApp (link configurado com seu número e texto pronto) -->
-                <a href="https://wa.me/5551997192091?text=Ol%C3%A1%2C%20Felipe%21%20Confirmo%20com%20alegria%20minha%20presen%C3%A7a%20na%20sua%20formatura%21" class="btn-whatsapp" target="_blank">
-                    <svg viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.13.555 4.195 1.611 6.012L.416 23.584l5.688-1.492A11.942 11.942 0 0 0 12.031 24c6.646 0 12.031-5.385 12.031-12.031S18.677 0 12.031 0zm0 21.996a9.929 9.929 0 0 1-5.068-1.39l-.364-.216-3.766.988.997-3.67-.236-.376A9.914 9.914 0 0 1 2.062 12.03C2.062 6.536 6.536 2.062 12.03 2.062c5.495 0 9.969 4.475 9.969 9.969 0 5.495-4.474 9.965-9.968 9.965zm5.474-7.485c-.3-.15-1.776-.877-2.052-.977-.276-.101-.477-.15-.677.15-.201.3-.778.977-.954 1.178-.175.201-.35.226-.65.076-1.564-.783-2.695-1.428-3.738-3.238-.176-.301.096-.28.39-.86.075-.15.038-.276-.038-.426-.075-.15-.677-1.63-.927-2.23-.245-.586-.495-.506-.677-.516-.176-.01-.377-.01-.577-.01s-.527.075-.802.375c-.276.3-1.053 1.03-1.053 2.508 0 1.478 1.078 2.906 1.228 3.106.15.201 2.115 3.238 5.122 4.538 1.956.845 2.651.91 3.528.775.993-.153 2.162-.88 2.463-1.73.3-.85.3-1.58.211-1.73-.1-.15-.35-.226-.65-.376z"/></svg>
-                    Confirmar Presença via WhatsApp
+                <hr class="divider">
+
+                <div class="details">
+                    <span class="highlight">📅 Data:</span> 18 de setembro<br>
+                    <span class="highlight">🕕 Horário:</span> 18h00<br>
+                    <span class="highlight">📍 Local:</span> Salão de Atos da UFRGS<br>
+                    <span class="highlight">🗺️ Endereço:</span> Av. Paulo Gama, 110<br>
+                    Campus Centro — Porto Alegre/RS<br>
+                    CEP: 90040-060
+                </div>
+
+                <a href="https://wa.me/5551997192091?text=Ol%C3%A1%2C%20Felipe%21%20Confirmo%20com%20alegria%20minha%20presen%C3%A7a%20na%20sua%20formatura%21"
+                   class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.13.555 4.195 1.611
+                        6.012L.416 23.584l5.688-1.492A11.942 11.942 0 0 0 12.031
+                        24c6.646 0 12.031-5.385 12.031-12.031S18.677 0 12.031
+                        0zm0 21.996a9.929 9.929 0 0
+                        1-5.068-1.39l-.364-.216-3.766.988.997-3.67-.236-.376A9.914
+                        9.914 0 0 1 2.062 12.03C2.062 6.536 6.536 2.062 12.03
+                        2.062c5.495 0 9.969 4.475 9.969 9.969 0 5.495-4.474
+                        9.965-9.968 9.965zm5.474-7.485c-.3-.15-1.776-.877-2.052-.977
+                        -.276-.101-.477-.15-.677.15-.201.3-.778.977-.954
+                        1.178-.175.201-.35.226-.65.076-1.564-.783-2.695-1.428
+                        -3.738-3.238-.176-.301.096-.28.39-.86.075-.15.038-.276
+                        -.038-.426-.075-.15-.677-1.63-.927-2.23-.245-.586-.495
+                        -.506-.677-.516-.176-.01-.377-.01-.577-.01s-.527.075-.802
+                        .375c-.276.3-1.053 1.03-1.053 2.508 0 1.478 1.078 2.906
+                        1.228 3.106.15.201 2.115 3.238 5.122 4.538 1.956.845
+                        2.651.91 3.528.775.993-.153 2.162-.88
+                        2.463-1.73.3-.85.3-1.58.211-1.73-.1-.15-.35-.226-.65-.376z"/>
+                    </svg>
+                    Confirmar Presença
                 </a>
-                
+
                 <button class="btn-back" onclick="toggleConvite()">↶ Voltar para a capa</button>
             </div>
 
@@ -225,12 +395,10 @@
     </div>
 
     <script>
-        // Função que aciona a rotação do cartão
         function toggleConvite() {
             document.getElementById('invite-container').classList.toggle('open');
         }
     </script>
+
 </body>
 </html>
-
-
