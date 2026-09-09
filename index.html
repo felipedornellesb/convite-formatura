@@ -11,12 +11,11 @@
         /* ==========================================================
            RESET E VARIAVEIS
            ========================================================== */
-        *, *::before, *::after {
+        *, ::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         :root {
             --navy: #0b1f38;
             --gold: #c5a059;
@@ -27,11 +26,9 @@
             --text-medium: #555;
             --text-light: #888;
         }
-
         html {
             scroll-behavior: smooth;
         }
-
         body {
             font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
             background-color: var(--cream);
@@ -40,7 +37,6 @@
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
         }
-
         /* ==========================================================
            BOTAO DE IDIOMA (fixo no topo)
            ========================================================== */
@@ -58,7 +54,6 @@
             -webkit-backdrop-filter: blur(8px);
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
         }
-
         .lang-btn {
             padding: 8px 16px;
             font-family: 'Lato', sans-serif;
@@ -71,12 +66,10 @@
             background: transparent;
             color: rgba(244, 241, 234, 0.5);
         }
-
         .lang-btn.active {
             background-color: var(--gold);
             color: var(--navy);
         }
-
         /* ==========================================================
            HERO (tela cheia)
            ========================================================== */
@@ -92,7 +85,6 @@
             position: relative;
             overflow: hidden;
         }
-
         /* Moldura decorativa */
         .hero::before {
             content: '';
@@ -102,7 +94,6 @@
             border-radius: 4px;
             pointer-events: none;
         }
-
         /* Ornamento dourado superior */
         .hero-ornament {
             width: 60px;
@@ -111,7 +102,6 @@
             margin-bottom: 32px;
             opacity: 0.6;
         }
-
         .hero-quote {
             font-family: 'Playfair Display', Georgia, serif;
             font-size: 2rem;
@@ -122,7 +112,6 @@
             max-width: 500px;
             margin-bottom: 16px;
         }
-
         .hero-author {
             font-family: 'Lato', sans-serif;
             font-size: 0.85rem;
@@ -131,7 +120,6 @@
             letter-spacing: 3px;
             margin-bottom: 36px;
         }
-
         .hero-sub {
             font-family: 'Lato', sans-serif;
             font-size: 1.05rem;
@@ -140,7 +128,6 @@
             line-height: 1.8;
             font-weight: 300;
         }
-
         /* Seta para rolar */
         .scroll-indicator {
             position: absolute;
@@ -157,12 +144,10 @@
             text-transform: uppercase;
             transition: opacity 0.5s;
         }
-
         .scroll-indicator.hidden {
             opacity: 0;
             pointer-events: none;
         }
-
         .chevron {
             width: 20px;
             height: 20px;
@@ -172,13 +157,11 @@
             opacity: 0.5;
             animation: bounce 2s infinite;
         }
-
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: rotate(45deg) translateY(0); }
             40% { transform: rotate(45deg) translateY(6px); }
             60% { transform: rotate(45deg) translateY(3px); }
         }
-
         /* ==========================================================
            TRANSICAO HERO -> CARD
            ========================================================== */
@@ -186,7 +169,6 @@
             height: 80px;
             background: linear-gradient(to bottom, var(--navy), var(--cream));
         }
-
         /* ==========================================================
            CARD PRINCIPAL
            ========================================================== */
@@ -201,12 +183,10 @@
             position: relative;
             z-index: 2;
         }
-
         .card-gold-bar {
             height: 4px;
             background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
         }
-
         .card-content {
             padding: 40px 28px;
             display: flex;
@@ -214,7 +194,6 @@
             align-items: center;
             text-align: center;
         }
-
         /* ==========================================================
            LOGO UFRGS
            ========================================================== */
@@ -224,7 +203,6 @@
             margin-bottom: 20px;
             opacity: 0.9;
         }
-
         /* ==========================================================
            CABECALHO
            ========================================================== */
@@ -235,21 +213,18 @@
             color: var(--text-light);
             margin-bottom: 6px;
         }
-
         .card-header-title {
             font-family: 'Playfair Display', Georgia, serif;
             font-size: 1.4rem;
             color: var(--navy);
             margin-bottom: 6px;
         }
-
         .card-header-subtitle {
             font-size: 0.85rem;
             color: var(--text-medium);
             font-style: italic;
             margin-bottom: 10px;
         }
-
         /* ==========================================================
            DIVISOR DOURADO
            ========================================================== */
@@ -260,7 +235,6 @@
             border: none;
             margin: 20px auto;
         }
-
         /* Divisor com losango central */
         .gold-divider-ornate {
             display: flex;
@@ -270,14 +244,12 @@
             margin: 24px auto;
             width: 120px;
         }
-
         .gold-divider-ornate .line {
             flex: 1;
             height: 1px;
             background-color: var(--gold);
             opacity: 0.5;
         }
-
         .gold-divider-ornate .diamond {
             width: 6px;
             height: 6px;
@@ -285,7 +257,6 @@
             transform: rotate(45deg);
             flex-shrink: 0;
         }
-
         /* ==========================================================
            FOTO DE PERFIL (clicavel para lightbox)
            ========================================================== */
@@ -294,7 +265,6 @@
             cursor: pointer;
             margin-bottom: 20px;
         }
-
         .profile-photo {
             width: 140px;
             height: 140px;
@@ -306,12 +276,10 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: block;
         }
-
         .photo-wrapper:hover .profile-photo {
             transform: scale(1.05);
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
         }
-
         /* Indicador de clique na foto */
         .photo-hint {
             font-size: 0.65rem;
@@ -322,7 +290,6 @@
             opacity: 0.7;
             text-align: center;
         }
-
         /* ==========================================================
            LIGHTBOX (foto expandida)
            ========================================================== */
@@ -342,12 +309,10 @@
             cursor: pointer;
             padding: 24px;
         }
-
         .lightbox-overlay.active {
             opacity: 1;
             pointer-events: auto;
         }
-
         .lightbox-img {
             max-width: 90%;
             max-height: 80vh;
@@ -358,11 +323,9 @@
             transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             object-fit: cover;
         }
-
         .lightbox-overlay.active .lightbox-img {
             transform: scale(1);
         }
-
         .lightbox-close-hint {
             position: absolute;
             bottom: 24px;
@@ -374,7 +337,6 @@
             letter-spacing: 2px;
             text-transform: uppercase;
         }
-
         /* ==========================================================
            NOME E TEXTO DO CONVITE
            ========================================================== */
@@ -388,14 +350,12 @@
             line-height: 1.3;
             margin-bottom: 16px;
         }
-
         .invite-text {
             font-size: 0.95rem;
             color: var(--text-medium);
             line-height: 1.8;
             margin-bottom: 4px;
         }
-
         .course-name {
             font-family: 'Playfair Display', Georgia, serif;
             font-size: 1.25rem;
@@ -404,14 +364,12 @@
             display: block;
             margin: 6px 0;
         }
-
         .university-name {
             font-size: 0.9rem;
             font-weight: 700;
             color: var(--navy);
             letter-spacing: 0.3px;
         }
-
         /* ==========================================================
            DETALHES DO EVENTO
            ========================================================== */
@@ -419,7 +377,6 @@
             width: 100%;
             margin-top: 8px;
         }
-
         .detail-row {
             display: flex;
             align-items: flex-start;
@@ -428,11 +385,9 @@
             text-align: left;
             border-bottom: 1px solid rgba(0, 0, 0, 0.06);
         }
-
         .detail-row:last-child {
             border-bottom: none;
         }
-
         .detail-icon {
             width: 20px;
             height: 20px;
@@ -440,7 +395,6 @@
             flex-shrink: 0;
             margin-top: 2px;
         }
-
         .detail-label {
             font-size: 0.65rem;
             text-transform: uppercase;
@@ -448,12 +402,10 @@
             color: var(--text-light);
             margin-bottom: 2px;
         }
-
         .detail-value {
             font-size: 0.95rem;
             color: var(--text-dark);
         }
-
         /* ==========================================================
            SECAO DE ACOES
            ========================================================== */
@@ -466,7 +418,6 @@
             align-items: center;
             gap: 12px;
         }
-
         .actions-title {
             font-size: 0.65rem;
             text-transform: uppercase;
@@ -474,7 +425,6 @@
             color: var(--text-light);
             margin-bottom: 6px;
         }
-
         /* Estilo base de botao */
         .action-btn {
             display: inline-flex;
@@ -493,47 +443,39 @@
             cursor: pointer;
             transition: transform 0.15s, box-shadow 0.25s;
         }
-
         .action-btn:active {
             transform: scale(0.97);
         }
-
         .action-btn svg {
             width: 18px;
             height: 18px;
             fill: currentColor;
             flex-shrink: 0;
         }
-
         /* Maps */
         .btn-maps {
             background-color: var(--navy);
             color: var(--white);
             box-shadow: 0 4px 12px rgba(11, 31, 56, 0.25);
         }
-
         .btn-maps:hover {
             box-shadow: 0 6px 20px rgba(11, 31, 56, 0.4);
         }
-
         /* Calendario */
         .calendar-wrapper {
             width: 100%;
             max-width: 320px;
             position: relative;
         }
-
         .btn-calendar {
             background-color: var(--gold);
             color: var(--navy);
             box-shadow: 0 4px 12px rgba(197, 160, 89, 0.3);
             width: 100%;
         }
-
         .btn-calendar:hover {
             box-shadow: 0 6px 20px rgba(197, 160, 89, 0.45);
         }
-
         /* Dropdown calendario */
         .calendar-dropdown {
             display: none;
@@ -547,16 +489,13 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
             animation: fadeSlideDown 0.25s ease;
         }
-
         .calendar-dropdown.show {
             display: flex;
         }
-
         @keyframes fadeSlideDown {
             from { opacity: 0; transform: translateY(-8px); }
             to   { opacity: 1; transform: translateY(0); }
         }
-
         .calendar-option {
             display: flex;
             align-items: center;
@@ -574,28 +513,23 @@
             font-family: 'Lato', sans-serif;
             transition: background-color 0.15s;
         }
-
         .calendar-option:hover {
             background-color: #f5f3ee;
         }
-
         .calendar-option svg {
             width: 20px;
             height: 20px;
             flex-shrink: 0;
         }
-
         /* WhatsApp */
         .btn-whatsapp {
             background-color: #25D366;
             color: var(--white);
             box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
         }
-
         .btn-whatsapp:hover {
             box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
         }
-
         /* ==========================================================
            FOOTER
            ========================================================== */
@@ -606,14 +540,12 @@
             color: var(--text-light);
             letter-spacing: 0.5px;
         }
-
         .footer-line {
             width: 30px;
             height: 1px;
             background-color: var(--gold);
             margin: 0 auto 14px;
         }
-
         /* ==========================================================
            ANIMACOES SCROLL REVEAL
            ========================================================== */
@@ -621,38 +553,30 @@
             opacity: 0;
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
-
         .reveal.visible {
             opacity: 1;
             transform: none !important;
         }
-
         /* Variantes de direcao */
         .reveal-up {
             transform: translateY(40px);
         }
-
         .reveal-down {
             transform: translateY(-40px);
         }
-
         .reveal-left {
             transform: translateX(-40px);
         }
-
         .reveal-right {
             transform: translateX(40px);
         }
-
         .reveal-scale {
             transform: scale(0.85);
         }
-
         .reveal-fade {
             transform: translateY(20px);
         }
-
-        /* Delays escalonados (aplicados via CSS para evitar JS complexo) */
+        /* Delays escalonados */
         .delay-1 { transition-delay: 0.1s; }
         .delay-2 { transition-delay: 0.2s; }
         .delay-3 { transition-delay: 0.3s; }
@@ -660,7 +584,6 @@
         .delay-5 { transition-delay: 0.5s; }
         .delay-6 { transition-delay: 0.6s; }
         .delay-7 { transition-delay: 0.7s; }
-
         /* ==========================================================
            RESPONSIVO — DESKTOP (>= 768px)
            ========================================================== */
@@ -669,38 +592,30 @@
                 font-size: 2.6rem;
                 max-width: 600px;
             }
-
             .hero-sub {
                 font-size: 1.15rem;
                 max-width: 480px;
             }
-
             .invite-card {
                 max-width: 700px;
                 width: 85%;
             }
-
             .card-content {
                 padding: 50px 60px;
             }
-
             .graduate-name {
                 font-size: 1.9rem;
             }
-
             .card-header-title {
                 font-size: 1.6rem;
             }
-
             .profile-photo {
                 width: 160px;
                 height: 160px;
             }
-
             .event-details {
                 max-width: 440px;
             }
-
             .actions-section {
                 padding: 36px 60px;
                 flex-direction: row;
@@ -708,30 +623,25 @@
                 justify-content: center;
                 gap: 14px;
             }
-
             .actions-title {
                 width: 100%;
                 text-align: center;
             }
-
             .action-btn {
                 width: auto;
                 min-width: 200px;
                 max-width: none;
                 padding: 14px 28px;
             }
-
             .calendar-wrapper {
                 max-width: none;
                 width: auto;
             }
-
             .btn-calendar {
                 width: auto;
                 min-width: 200px;
                 padding: 14px 28px;
             }
-
             .calendar-dropdown {
                 position: absolute;
                 top: 100%;
@@ -741,45 +651,36 @@
                 z-index: 10;
             }
         }
-
         /* Telas grandes (>= 1024px) */
         @media (min-width: 1024px) {
             .invite-card {
                 max-width: 800px;
             }
-
             .card-content {
                 padding: 60px 90px;
             }
-
             .hero-quote {
                 font-size: 2.8rem;
             }
         }
-
         /* Telas pequenas (<= 360px) */
         @media (max-width: 360px) {
             .hero-quote {
                 font-size: 1.6rem;
             }
-
             .card-content {
                 padding: 28px 18px;
             }
-
             .graduate-name {
                 font-size: 1.3rem;
             }
-
             .profile-photo {
                 width: 120px;
                 height: 120px;
             }
-
             .course-name {
                 font-size: 1.1rem;
             }
-
             .actions-section {
                 padding: 20px 14px;
             }
@@ -787,7 +688,6 @@
     </style>
 </head>
 <body>
-
     <!-- ===========================================================
          BOTAO DE IDIOMA (fixo)
          =========================================================== -->
@@ -818,8 +718,8 @@
         >"O verdadeiro custo de qualquer coisa é o esforço e a dificuldade de obtê-la."</p>
         <p class="hero-author">— Adam Smith</p>
         <p class="hero-sub"
-           data-pt="Todo esforço exige seu preço, e hoje celebramos a recompensa."
-           data-en="Every effort has its price, and today we celebrate the reward."
+           data-pt="E todo esse esforço, enfim, encontrou sua recompensa."
+           data-en="And all that effort has finally found its reward."
         >E todo esse esforço, enfim, encontrou sua recompensa.</p>
 
         <div class="scroll-indicator" id="scrollIndicator">
@@ -839,7 +739,6 @@
     <main class="invite-card">
         <div class="card-gold-bar"></div>
         <div class="card-content">
-
             <!-- Logo UFRGS -->
             <div class="reveal reveal-scale delay-1">
                 <img src="ufrgs-logo.png"
@@ -930,6 +829,7 @@
                         >18 de setembro de 2025</div>
                     </div>
                 </div>
+
                 <!-- Horario -->
                 <div class="detail-row reveal reveal-left delay-5">
                     <svg class="detail-icon" viewBox="0 0 24 24">
@@ -942,6 +842,7 @@
                         <div class="detail-value">18h00</div>
                     </div>
                 </div>
+
                 <!-- Local -->
                 <div class="detail-row reveal reveal-left delay-6">
                     <svg class="detail-icon" viewBox="0 0 24 24">
@@ -957,8 +858,24 @@
                         >Salão de Atos da UFRGS<br>Av. Paulo Gama, 110 — Campus Centro<br>Porto Alegre — RS, 90040-060</div>
                     </div>
                 </div>
-            </div>
 
+                <!-- Observacao -->
+                <div class="detail-row reveal reveal-left delay-7">
+                    <svg class="detail-icon" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10
+                                 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                    </svg>
+                    <div>
+                        <div class="detail-label"
+                             data-pt="Observação" data-en="Note"
+                        >Observação</div>
+                        <div class="detail-value"
+                             data-pt="Chegada ao Salão de Atos com no mínimo 30 minutos de antecedência."
+                             data-en="Please arrive at the Ceremonial Hall at least 30 minutes early."
+                        >Chegada ao Salão de Atos com no mínimo 30 minutos de antecedência.</div>
+                    </div>
+                </div>
+            </div>
         </div><!-- /card-content -->
 
         <!-- ===========================================================
@@ -988,7 +905,7 @@
                     <span data-pt="Adicionar ao Calendário" data-en="Add to Calendar">Adicionar ao Calendário</span>
                 </button>
                 <div class="calendar-dropdown" id="calendarDropdown">
-                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Formatura+Felipe+Dornelles+Brasil+-+Ci%C3%AAncias+Econ%C3%B4micas+UFRGS&dates=20250918T210000Z/20250919T010000Z&details=Cerim%C3%B4nia+de+Cola%C3%A7%C3%A3o+de+Grau+%E2%80%94+Ci%C3%AAncias+Econ%C3%B4micas+pela+UFRGS&location=Sal%C3%A3o+de+Atos+da+UFRGS%2C+Av.+Paulo+Gama%2C+110+-+Campus+Centro%2C+Porto+Alegre+-+RS&sf=true"
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Formatura+Felipe+Dornelles+Brasil+-+Ci%C3%AAncias+Econ%C3%B4micas+UFRGS&dates=20250918T210000Z/20250919T010000Z&details=Cerim%C3%B4nia+de+Cola%C3%A7%C3%A3o+de+Grau+%E2%80%94+Ci%C3%AAncias+Econ%C3%B4micas+pela+UFRGS.%0A%0AChegada+ao+Sal%C3%A3o+de+Atos+com+no+m%C3%ADnimo+30+minutos+de+anteced%C3%AAncia.&location=Sal%C3%A3o+de+Atos+da+UFRGS%2C+Av.+Paulo+Gama%2C+110+-+Campus+Centro%2C+Porto+Alegre+-+RS&sf=true"
                        class="calendar-option" target="_blank" rel="noopener noreferrer">
                         <svg viewBox="0 0 24 24" style="fill: #4285F4;">
                             <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm1-13h-2v6l5.25 3.15.75-1.23-4-2.37V7z"/>
@@ -1005,7 +922,7 @@
             </div>
 
             <!-- WhatsApp -->
-            <a href="https://wa.me/5551997192091?text=Ol%C3%A1%2C%20Felipe%21%20Confirmo%20com%20alegria%20minha%20presen%C3%A7a%20na%20sua%20formatura%21"
+            <a href="https://wa.me/5551997192091?text=Confirmo%20minha%20presen%C3%A7a%20na%20sua%20cola%C3%A7%C3%A3o%21"
                class="action-btn btn-whatsapp reveal reveal-up delay-4"
                target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24">
@@ -1046,7 +963,6 @@
                 threshold: 0.12,
                 rootMargin: '0px 0px -40px 0px'
             });
-
             reveals.forEach(function (el) {
                 observer.observe(el);
             });
@@ -1070,25 +986,17 @@
            3. ALTERNANCIA DE IDIOMA (PT / EN)
            =========================================================== */
         var currentLang = 'pt';
-
         function setLang(lang) {
             currentLang = lang;
-
-            // Trocar visual do botão
             document.getElementById('btnPT').classList.toggle('active', lang === 'pt');
             document.getElementById('btnEN').classList.toggle('active', lang === 'en');
-
-            // Trocar textos
             var elements = document.querySelectorAll('[data-pt][data-en]');
             elements.forEach(function (el) {
                 var text = el.getAttribute('data-' + lang);
                 if (text) {
-                    // Usar innerHTML para suportar <br> nos textos
                     el.innerHTML = text;
                 }
             });
-
-            // Atualizar o lang do HTML
             document.documentElement.lang = (lang === 'pt') ? 'pt-BR' : 'en';
         }
 
@@ -1100,9 +1008,7 @@
 
         function openLightbox() {
             lightboxEl.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Travar scroll do body
-
-            // Listener para fechar ao rolar (wheel)
+            document.body.style.overflow = 'hidden';
             if (!scrollListenerAttached) {
                 window.addEventListener('wheel', closeLightboxOnScroll, { passive: true });
                 window.addEventListener('touchmove', closeLightboxOnScroll, { passive: true });
@@ -1113,7 +1019,6 @@
         function closeLightbox() {
             lightboxEl.classList.remove('active');
             document.body.style.overflow = '';
-            // Remover listeners
             window.removeEventListener('wheel', closeLightboxOnScroll);
             window.removeEventListener('touchmove', closeLightboxOnScroll);
             scrollListenerAttached = false;
@@ -1125,7 +1030,6 @@
             }
         }
 
-        // Impedir que clique na imagem feche o lightbox (apenas clique no fundo fecha)
         document.querySelector('.lightbox-img').addEventListener('click', function (e) {
             e.stopPropagation();
         });
@@ -1138,7 +1042,6 @@
             dd.classList.toggle('show');
         }
 
-        // Fechar ao clicar fora
         document.addEventListener('click', function (e) {
             var wrapper = document.querySelector('.calendar-wrapper');
             if (wrapper && !wrapper.contains(e.target)) {
@@ -1169,17 +1072,17 @@
                 'DTSTART;TZID=America/Sao_Paulo:20250918T180000',
                 'DTEND;TZID=America/Sao_Paulo:20250918T220000',
                 'SUMMARY:Formatura Felipe Dornelles Brasil — Ciencias Economicas UFRGS',
-                'DESCRIPTION:Cerimonia de Colacao de Grau — Ciencias Economicas pela Universidade Federal do Rio Grande do Sul (UFRGS).',
+                'DESCRIPTION:Cerimonia de Colacao de Grau — Ciencias Economicas pela UFRGS.\\nChegada ao Salao de Atos com no minimo 30 minutos de antecedencia.',
                 'LOCATION:Salao de Atos da UFRGS\\, Av. Paulo Gama\\, 110 - Campus Centro\\, Porto Alegre - RS\\, 90040-060',
                 'STATUS:CONFIRMED',
                 'BEGIN:VALARM',
-                'TRIGGER:-PT1H',
-                'DESCRIPTION:Formatura em 1 hora',
+                'TRIGGER:-PT2H',
+                'DESCRIPTION:Formatura em 2 horas — Chegue ao Salao de Atos com 30 min de antecedencia',
                 'ACTION:DISPLAY',
                 'END:VALARM',
                 'BEGIN:VALARM',
                 'TRIGGER:-P1D',
-                'DESCRIPTION:Formatura amanha',
+                'DESCRIPTION:Formatura amanha — Chegue ao Salao de Atos com 30 min de antecedencia',
                 'ACTION:DISPLAY',
                 'END:VALARM',
                 'END:VEVENT',
@@ -1195,10 +1098,8 @@
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
-
             document.getElementById('calendarDropdown').classList.remove('show');
         }
     </script>
-
 </body>
 </html>
