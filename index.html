@@ -406,6 +406,19 @@
             font-size: 0.95rem;
             color: var(--text-dark);
         }
+        /* Link customizado para o cardápio */
+        .menu-link {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 700;
+            border-bottom: 1px dashed var(--gold);
+            padding-bottom: 2px;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .menu-link:hover {
+            color: var(--navy);
+            border-bottom: 1px solid var(--navy);
+        }
         /* ==========================================================
            SECAO DE ACOES
            ========================================================== */
@@ -812,7 +825,7 @@
                 <hr class="gold-divider">
             </div>
 
-            <!-- Detalhes do evento -->
+            <!-- Detalhes do evento (Colação) -->
             <div class="event-details">
                 <!-- Data -->
                 <div class="detail-row reveal reveal-left delay-4">
@@ -876,6 +889,117 @@
                     </div>
                 </div>
             </div>
+
+            <!-- ===========================================================
+                 CONFRATERNIZAÇÃO
+                 =========================================================== -->
+            
+            <div class="reveal reveal-scale delay-5">
+                <div class="gold-divider-ornate" style="margin: 36px auto 16px;">
+                    <span class="line"></span>
+                    <span class="diamond"></span>
+                    <span class="line"></span>
+                </div>
+            </div>
+
+            <div class="reveal reveal-up delay-6">
+                <h3 class="card-header-title" style="font-size: 1.25rem; margin-bottom: 16px;"
+                    data-pt="Confraternização"
+                    data-en="Celebration"
+                >Confraternização</h3>
+            </div>
+
+            <div class="event-details" style="margin-bottom: 24px;">
+                <!-- Local da Festa -->
+                <div class="detail-row reveal reveal-left delay-5">
+                    <svg class="detail-icon" viewBox="0 0 24 24">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/>
+                    </svg>
+                    <div>
+                        <div class="detail-label" data-pt="Local" data-en="Venue">Local</div>
+                        <div class="detail-value"
+                             data-pt="4Beer Bela Vista<br>Rua Passo da Pátria, 389 — Bela Vista<br>Porto Alegre — RS, 90460-060"
+                             data-en="4Beer Bela Vista<br>Rua Passo da Pátria, 389 — Bela Vista<br>Porto Alegre — RS, 90460-060"
+                        >4Beer Bela Vista<br>Rua Passo da Pátria, 389 — Bela Vista<br>Porto Alegre — RS, 90460-060</div>
+                    </div>
+                </div>
+
+                <!-- Horário da Festa -->
+                <div class="detail-row reveal reveal-left delay-6">
+                    <svg class="detail-icon" viewBox="0 0 24 24">
+                        <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/>
+                    </svg>
+                    <div>
+                        <div class="detail-label" data-pt="Horário" data-en="Time">Horário</div>
+                        <div class="detail-value"
+                             data-pt="A partir das 20h00 (Logo após a colação)"
+                             data-en="From 8:00 PM (Directly after the ceremony)"
+                        >A partir das 20h00 (Logo após a colação)</div>
+                    </div>
+                </div>
+
+                <!-- Reserva -->
+                <div class="detail-row reveal reveal-left delay-7">
+                    <svg class="detail-icon" viewBox="0 0 24 24">
+                        <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                    </svg>
+                    <div>
+                        <div class="detail-label" data-pt="Reserva" data-en="Reservation">Reserva</div>
+                        <div class="detail-value"
+                             data-pt="Há um espaço interno reservado no nome de Felipe."
+                             data-en="There is an indoor space reserved under the name Felipe."
+                        >Há um espaço interno reservado no nome de Felipe.</div>
+                    </div>
+                </div>
+
+                <!-- Estacionamento -->
+                <div class="detail-row reveal reveal-left delay-7">
+                    <svg class="detail-icon" viewBox="0 0 24 24">
+                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.85 7h10.28l1.08 3.11H5.77L6.85 7zM19 17H5v-4.66l.12-.34h13.77l.11.34V17z"/>
+                        <circle cx="7.5" cy="14.5" r="1.5"/>
+                        <circle cx="16.5" cy="14.5" r="1.5"/>
+                    </svg>
+                    <div>
+                        <div class="detail-label" data-pt="Estacionamento" data-en="Parking">Estacionamento</div>
+                        <div class="detail-value"
+                             data-pt="A casa possui estacionamento gratuito para clientes (vagas limitadas). Há um estacionamento pago próximo (nº 198) e vagas na própria rua."
+                             data-en="The venue offers free parking for customers (limited spots). There is a nearby paid lot (at #198) and street parking."
+                        >A casa possui estacionamento gratuito para clientes (vagas limitadas). Há um estacionamento pago próximo (nº 198) e vagas na própria rua.</div>
+                    </div>
+                </div>
+
+                <!-- Menu Link -->
+                <div class="detail-row reveal reveal-left delay-7" style="border-bottom: none;">
+                    <svg class="detail-icon" viewBox="0 0 24 24">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                    </svg>
+                    <div>
+                        <div class="detail-label" data-pt="Cardápio" data-en="Menu">Cardápio</div>
+                        <div class="detail-value">
+                            <a href="https://livemenu.app/menu/62221eaf8c5bd400111f89f0?fbclid=PAdGRleAUWxHhwZG9mAmZkaWQWUOg__J3T2t6D7hXRH6MjxECRV4K5zGV4dG4DYWVtAjExAHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABp_fPO7-Y8sHmIcm2vJYCcEAYRAz03m4ZcuyUS4Tm8wLpLPFtXsm0a5BHZ9D4_aem_8MjBHCHv4v-iNViYNQVbJg" 
+                               class="menu-link" target="_blank" rel="noopener noreferrer"
+                               data-pt="Clique aqui para conhecer a casa"
+                               data-en="Click here to discover the venue"
+                            >Clique aqui para conhecer a casa</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Botão 4Beer no Maps -->
+                <div class="reveal reveal-up delay-7" style="display: flex; justify-content: center; margin-top: 16px;">
+                    <a href="https://www.google.com/maps/search/?api=1&query=4Beer+Bela+Vista+Rua+Passo+da+Patria+389+Porto+Alegre"
+                       class="action-btn btn-maps"
+                       target="_blank" rel="noopener noreferrer"
+                       style="background-color: var(--gold); color: var(--navy); width: 100%;">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/>
+                        </svg>
+                        <span data-pt="Ver 4Beer no Maps" data-en="View 4Beer on Maps">Ver 4Beer no Maps</span>
+                    </a>
+                </div>
+
+            </div><!-- /event-details Confraternização -->
+            
         </div><!-- /card-content -->
 
         <!-- ===========================================================
@@ -886,14 +1010,14 @@
                  data-pt="Ações" data-en="Actions"
             >Ações</div>
 
-            <!-- Google Maps -->
+            <!-- Google Maps Colação -->
             <a href="https://www.google.com/maps/search/?api=1&query=Salao+de+Atos+UFRGS+Av+Paulo+Gama+110+Porto+Alegre+RS"
                class="action-btn btn-maps reveal reveal-up delay-2"
                target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24">
                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/>
                 </svg>
-                <span data-pt="Ver no Google Maps" data-en="View on Google Maps">Ver no Google Maps</span>
+                <span data-pt="Ver Colação no Maps" data-en="Ceremony Directions">Ver Colação no Maps</span>
             </a>
 
             <!-- Calendario -->
@@ -905,7 +1029,7 @@
                     <span data-pt="Adicionar ao Calendário" data-en="Add to Calendar">Adicionar ao Calendário</span>
                 </button>
                 <div class="calendar-dropdown" id="calendarDropdown">
-                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Formatura+Felipe+Dornelles+Brasil+-+Ci%C3%AAncias+Econ%C3%B4micas+UFRGS&dates=20260918T210000Z/20260919T010000Z&details=Cerim%C3%B4nia+de+Cola%C3%A7%C3%A3o+de+Grau+%E2%80%94+Ci%C3%AAncias+Econ%C3%B4micas+pela+UFRGS.%0A%0AChegada+ao+Sal%C3%A3o+de+Atos+com+no+m%C3%ADnimo+30+minutos+de+anteced%C3%AAncia.&location=Sal%C3%A3o+de+Atos+da+UFRGS%2C+Av.+Paulo+Gama%2C+110+-+Campus+Centro%2C+Porto+Alegre+-+RS&sf=true"
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Formatura+Felipe+Dornelles+Brasil+-+Ci%C3%AAncias+Econ%C3%B4micas+UFRGS&dates=20260918T210000Z/20260919T010000Z&details=Cerim%C3%B4nia+de+Cola%C3%A7%C3%A3o+de+Grau+%E2%80%94+Ci%C3%AAncias+Econ%C3%B4micas+pela+UFRGS.%0A%0AChegada+ao+Sal%C3%A3o+de+Atos+com+no+m%C3%ADnimo+30+minutos+de+anteced%C3%AAncia.%0A%0AConfraterniza%C3%A7%C3%A3o%3A+A+partir+das+20h00+no+4Beer+Bela+Vista+%28Rua+Passo+da+P%C3%A1tria%2C+389%29.&location=Sal%C3%A3o+de+Atos+da+UFRGS%2C+Av.+Paulo+Gama%2C+110+-+Campus+Centro%2C+Porto+Alegre+-+RS&sf=true"
                        class="calendar-option" target="_blank" rel="noopener noreferrer">
                         <svg viewBox="0 0 24 24" style="fill: #4285F4;">
                             <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm1-13h-2v6l5.25 3.15.75-1.23-4-2.37V7z"/>
@@ -1072,7 +1196,7 @@
                 'DTSTART;TZID=America/Sao_Paulo:20260918T180000',
                 'DTEND;TZID=America/Sao_Paulo:20260918T220000',
                 'SUMMARY:Formatura Felipe Dornelles Brasil — Ciencias Economicas UFRGS',
-                'DESCRIPTION:Cerimonia de Colacao de Grau — Ciencias Economicas pela UFRGS.\\nChegada ao Salao de Atos com no minimo 30 minutos de antecedencia.',
+                'DESCRIPTION:Cerimonia de Colacao de Grau — Ciencias Economicas pela UFRGS.\\nChegada ao Salao de Atos com no minimo 30 minutos de antecedencia.\\n\\nConfraternizacao: A partir das 20h00 no 4Beer Bela Vista (Rua Passo da Patria\\, 389).',
                 'LOCATION:Salao de Atos da UFRGS\\, Av. Paulo Gama\\, 110 - Campus Centro\\, Porto Alegre - RS\\, 90040-060',
                 'STATUS:CONFIRMED',
                 'BEGIN:VALARM',
